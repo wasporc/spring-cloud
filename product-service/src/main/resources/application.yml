@@ -10,6 +10,8 @@ spring:
     hibernate:
       ddl-auto: none
     show-sql: true
+  liquibase:
+    change-log: classpath:db/liquibase-changeLog.xml
 server:
   port: 8192
 eureka:
