@@ -1,0 +1,47 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Все товары</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1> Товары </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th> Номер</th>
+                    <th> Название</th>
+                    <th> Цена</th>
+                    <th> </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${products.empty}">
+                    <td colspan="2"> Нет товаров</td>
+                </tr>
+                <tr th:each="product : ${products}">
+                    <td><span th:text="${product.id}"> Номер </span></td>
+                    <td><span th:text="${product.name}"> Название </span></td>
+                    <td><span th:text="${product.price}"> Цена </span></td>
+                    <td><a class="btn btn-primary" href="#" th:href="@{/edit/{id}(id=${product.id})}"> Редактировать </a></td>
+                    <td><a class="btn btn-warning" href="#" th:href="@{/delete/{id}(id=${product.id})}"> Удалить </a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <a class="btn btn-success" href="#" th:href="@{/create}"> Добавить товар </a>
+<!--            <a class="btn btn-primary" href="#" th:href="@{/products/edit}"-->
+<!--            th:classappend="${products.empty} ? 'disabled' : ''"> Edit products </a>-->
+<!--            <a class="btn btn-success" href="#" th:href="@{/}"> Назад на главную </a>-->
+        </div>
+    </div>
+</div>
+</body>
+</html>

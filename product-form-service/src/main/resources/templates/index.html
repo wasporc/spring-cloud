@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" lang="en">
+<head>
+    <title>Thymeleaf</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <p>
+    <h3>Thymeleaf - web</h3>
+    </p>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h1> Товары </h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <table class="table">
+            <thead>
+            <tr>
+                <th> Номер</th>
+                <th> Название</th>
+                <th> Цена</th>
+                <th> </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${products.empty}">
+                <td colspan="2"> Нет товаров</td>
+            </tr>
+            <tr th:each="product : ${products}">
+                <td><span th:text="${product.id}"> Номер </span></td>
+                <td><span th:text="${product.name}"> Название </span></td>
+                <td><span th:text="${product.price}"> Цена </span></td>
+                <td><a class="btn btn-primary" href="#" th:href="@{/basket/add/{id}(id=${product.id})}"> Добавить в корзину </a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <a class="btn btn-success" href="#" th:href="@{/basket/edit}" th:text="${count}"></a>
+    </div>
+</div>
+</body>
+</html>
